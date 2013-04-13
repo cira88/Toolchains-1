@@ -124,7 +124,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2013-01-16" "gcc-4.8.0" "GNU"
+.TH GCC 1 "2013-04-10" "gcc-4.9.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -255,7 +255,8 @@ in the following sections.
 .IX Item "Warning Options"
 \&\fB\-fsyntax\-only  \-fmax\-errors=\fR\fIn\fR  \fB\-Wpedantic 
 \&\-pedantic\-errors 
-\&\-w  \-Wextra  \-Wall  \-Waddress  \-Waggregate\-return  \-Warray\-bounds 
+\&\-w  \-Wextra  \-Wall  \-Waddress  \-Waggregate\-return  
+\&\-Waggressive\-loop\-optimizations \-Warray\-bounds 
 \&\-Wno\-attributes \-Wno\-builtin\-macro\-redefined 
 \&\-Wc++\-compat \-Wc++11\-compat \-Wcast\-align  \-Wcast\-qual  
 \&\-Wchar\-subscripts \-Wclobbered  \-Wcomment 
@@ -370,7 +371,8 @@ in the following sections.
 \&\-save\-temps \-save\-temps=cwd \-save\-temps=obj \-time\fR[\fB=\fR\fIfile\fR]
 .IP "\fIOptimization Options\fR" 4
 .IX Item "Optimization Options"
-\&\fB\-falign\-functions[=\fR\fIn\fR\fB] \-falign\-jumps[=\fR\fIn\fR\fB] 
+\&\fB\-faggressive\-loop\-optimizations \-falign\-functions[=\fR\fIn\fR\fB] 
+\&\-falign\-jumps[=\fR\fIn\fR\fB] 
 \&\-falign\-labels[=\fR\fIn\fR\fB] \-falign\-loops[=\fR\fIn\fR\fB] 
 \&\-fassociative\-math \-fauto\-inc\-dec \-fbranch\-probabilities 
 \&\-fbranch\-target\-load\-optimize \-fbranch\-target\-load\-optimize2 
@@ -520,12 +522,13 @@ in the following sections.
 \&\-mtp=\fR\fIname\fR \fB\-mtls\-dialect=\fR\fIdialect\fR 
 \&\fB\-mword\-relocations 
 \&\-mfix\-cortex\-m3\-ldrd 
-\&\-munaligned\-access\fR
+\&\-munaligned\-access 
+\&\-mneon\-for\-64bits\fR
 .Sp
 \&\fI\s-1AVR\s0 Options\fR
 \&\fB\-mmcu=\fR\fImcu\fR \fB\-maccumulate\-args \-mbranch\-cost=\fR\fIcost\fR 
 \&\fB\-mcall\-prologues \-mint8 \-mno\-interrupts \-mrelax 
-\&\-mstrict\-X \-mtiny\-stack\fR
+\&\-mstrict\-X \-mtiny\-stack \-Waddr\-space\-convert\fR
 .Sp
 \&\fIBlackfin Options\fR
 \&\fB\-mcpu=\fR\fIcpu\fR[\fB\-\fR\fIsirevision\fR] 
@@ -744,13 +747,14 @@ in the following sections.
 \&\fB\-mmemcpy \-mxl\-soft\-mul \-mxl\-soft\-div \-mxl\-barrel\-shift 
 \&\-mxl\-pattern\-compare \-mxl\-stack\-check \-mxl\-gp\-opt \-mno\-clearbss 
 \&\-mxl\-multiply\-high \-mxl\-float\-convert \-mxl\-float\-sqrt 
-\&\-mxl\-mode\-\fR\fIapp-model\fR
+\&\-mbig\-endian \-mlittle\-endian \-mxl\-reorder \-mxl\-mode\-\fR\fIapp-model\fR
 .Sp
 \&\fI\s-1MIPS\s0 Options\fR
 \&\fB\-EL  \-EB  \-march=\fR\fIarch\fR  \fB\-mtune=\fR\fIarch\fR 
 \&\fB\-mips1  \-mips2  \-mips3  \-mips4  \-mips32  \-mips32r2 
 \&\-mips64  \-mips64r2 
 \&\-mips16  \-mno\-mips16  \-mflip\-mips16 
+\&\-minterlink\-compressed \-mno\-interlink\-compressed 
 \&\-minterlink\-mips16  \-mno\-interlink\-mips16 
 \&\-mabi=\fR\fIabi\fR  \fB\-mabicalls  \-mno\-abicalls 
 \&\-mshared  \-mno\-shared  \-mplt  \-mno\-plt  \-mxgot  \-mno\-xgot 
@@ -758,6 +762,7 @@ in the following sections.
 \&\-mno\-float \-msingle\-float  \-mdouble\-float  
 \&\-mdsp  \-mno\-dsp  \-mdspr2  \-mno\-dspr2 
 \&\-mmcu \-mmno\-mcu 
+\&\-mmicromips \-mno\-micromips 
 \&\-mfpu=\fR\fIfpu-type\fR 
 \&\fB\-msmartmips  \-mno\-smartmips 
 \&\-mpaired\-single  \-mno\-paired\-single  \-mdmx  \-mno\-mdmx 
@@ -773,7 +778,7 @@ in the following sections.
 \&\-mcheck\-zero\-division  \-mno\-check\-zero\-division 
 \&\-mdivide\-traps  \-mdivide\-breaks 
 \&\-mmemcpy  \-mno\-memcpy  \-mlong\-calls  \-mno\-long\-calls 
-\&\-mmad  \-mno\-mad  \-mfused\-madd  \-mno\-fused\-madd  \-nocpp 
+\&\-mmad \-mno\-mad \-mimadd \-mno\-imadd \-mfused\-madd  \-mno\-fused\-madd  \-nocpp 
 \&\-mfix\-24k \-mno\-fix\-24k 
 \&\-mfix\-r4000  \-mno\-fix\-r4000  \-mfix\-r4400  \-mno\-fix\-r4400 
 \&\-mfix\-r10000 \-mno\-fix\-r10000  \-mfix\-vr4120  \-mno\-fix\-vr4120 
@@ -932,7 +937,6 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-mfaster\-structs  \-mno\-faster\-structs  \-mflat  \-mno\-flat 
 \&\-mfpu  \-mno\-fpu  \-mhard\-float  \-msoft\-float 
 \&\-mhard\-quad\-float  \-msoft\-quad\-float 
-\&\-mlittle\-endian 
 \&\-mstack\-bias  \-mno\-stack\-bias 
 \&\-munaligned\-doubles  \-mno\-unaligned\-doubles 
 \&\-mv8plus  \-mno\-v8plus  \-mvis  \-mno\-vis 
@@ -967,11 +971,16 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-mtda=\fR\fIn\fR  \fB\-msda=\fR\fIn\fR  \fB\-mzda=\fR\fIn\fR 
 \&\fB\-mapp\-regs  \-mno\-app\-regs 
 \&\-mdisable\-callt  \-mno\-disable\-callt 
-\&\-mv850e2v3 
-\&\-mv850e2 
-\&\-mv850e1 \-mv850es 
-\&\-mv850e 
-\&\-mv850  \-mbig\-switch\fR
+\&\-mv850e2v3 \-mv850e2 \-mv850e1 \-mv850es 
+\&\-mv850e \-mv850 \-mv850e3v5 
+\&\-mloop 
+\&\-mrelax 
+\&\-mlong\-jumps 
+\&\-msoft\-float 
+\&\-mhard\-float 
+\&\-mgcc\-abi 
+\&\-mrh850\-abi 
+\&\-mbig\-switch\fR
 .Sp
 \&\fI\s-1VAX\s0 Options\fR
 \&\fB\-mg  \-mgnu  \-munix\fR
@@ -2001,6 +2010,30 @@ for reducing code size in production builds, much like defining
 exceptions in violation of the exception specifications; the compiler
 still optimizes based on the specifications, so throwing an
 unexpected exception results in undefined behavior at run time.
+.IP "\fB\-fextern\-tls\-init\fR" 4
+.IX Item "-fextern-tls-init"
+.PD 0
+.IP "\fB\-fno\-extern\-tls\-init\fR" 4
+.IX Item "-fno-extern-tls-init"
+.PD
+The \*(C+11 and OpenMP standards allow \fBthread_local\fR and
+\&\fBthreadprivate\fR variables to have dynamic (runtime)
+initialization.  To support this, any use of such a variable goes
+through a wrapper function that performs any necessary initialization.
+When the use and definition of the variable are in the same
+translation unit, this overhead can be optimized away, but when the
+use is in a different translation unit there is significant overhead
+even if the variable doesn't actually need dynamic initialization.  If
+the programmer can be sure that no use of the variable in a
+non-defining \s-1TU\s0 needs to trigger dynamic initialization (either
+because the variable is statically initialized, or a use of the
+variable in the defining \s-1TU\s0 will be executed before any uses in
+another \s-1TU\s0), they can avoid this overhead with the
+\&\fB\-fno\-extern\-tls\-init\fR option.
+.Sp
+On targets that support symbol aliases, the default is
+\&\fB\-fextern\-tls\-init\fR.  On targets that do not support symbol
+aliases, the default is \fB\-fno\-extern\-tls\-init\fR.
 .IP "\fB\-ffor\-scope\fR" 4
 .IX Item "-ffor-scope"
 .PD 0
@@ -2349,7 +2382,9 @@ passed in memory as specified in psABI.  For example:
 .IX Item "-Wctor-dtor-privacy ( and Objective- only)"
 Warn when a class seems unusable because all the constructors or
 destructors in that class are private, and it has neither friends nor
-public static member functions.
+public static member functions.  Also warn if there are no non-private
+methods, and there's at least one private member function that isn't
+a constructor or destructor.
 .IP "\fB\-Wdelete\-non\-virtual\-dtor\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wdelete-non-virtual-dtor ( and Objective- only)"
 Warn when \fBdelete\fR is used to destroy an instance of a class that
@@ -2530,22 +2565,6 @@ Warn when overload resolution chooses a promotion from unsigned or
 enumerated type to a signed type, over a conversion to an unsigned type of
 the same size.  Previous versions of G++ tried to preserve
 unsignedness, but the standard mandates the current behavior.
-.Sp
-.Vb 4
-\&        struct A {
-\&          operator int ();
-\&          A& operator = (int);
-\&        };
-\&        
-\&        main ()
-\&        {
-\&          A a,b;
-\&          a = b;
-\&        }
-.Ve
-.Sp
-In this example, G++ synthesizes a default \fBA& operator =
-(const A&);\fR, while cfront uses the user-defined \fBoperator =\fR.
 .SS "Options Controlling Objective-C and Objective\-\*(C+ Dialects"
 .IX Subsection "Options Controlling Objective-C and Objective- Dialects"
 (\s-1NOTE:\s0 This manual does not describe the Objective-C and Objective\-\*(C+
@@ -4010,6 +4029,10 @@ bit-wise operator is likely to be expected.
 Warn if any functions that return structures or unions are defined or
 called.  (In languages where you can return an array, this also elicits
 a warning.)
+.IP "\fB\-Wno\-aggressive\-loop\-optimizations\fR" 4
+.IX Item "-Wno-aggressive-loop-optimizations"
+Warn if in a loop with constant number of iterations the compiler detects
+undefined behavior in some statement during one or more of the iterations.
 .IP "\fB\-Wno\-attributes\fR" 4
 .IX Item "-Wno-attributes"
 Do not warn if an unexpected \f(CW\*(C`_\|_attribute_\|_\*(C'\fR is used, such as
@@ -4512,6 +4535,18 @@ argument in the command line does not matter; it takes effect after all
 other options are processed, and it does so only once, no matter how
 many times it is given.  This is mainly intended to be used with
 \&\fB\-fcompare\-debug\fR.
+.IP "\fB\-fsanitize=address\fR" 4
+.IX Item "-fsanitize=address"
+Enable AddressSanitizer, a fast memory error detector.
+Memory access instructions will be instrumented to detect
+out-of-bounds and use-after-free bugs.
+See <\fBhttp://code.google.com/p/address\-sanitizer/\fR> for more details.
+.IP "\fB\-fsanitize=thread\fR" 4
+.IX Item "-fsanitize=thread"
+Enable ThreadSanitizer, a fast data race detector.
+Memory access instructions will be instrumented to detect
+data race bugs.
+See <\fBhttp://code.google.com/p/data\-race\-test/wiki/ThreadSanitizer\fR> for more details.
 .IP "\fB\-fdump\-final\-insns\fR[\fB=\fR\fIfile\fR]" 4
 .IX Item "-fdump-final-insns[=file]"
 Dump the final internal representation (\s-1RTL\s0) to \fIfile\fR.  If the
@@ -5511,7 +5546,7 @@ successfully vectorized.
 .IP "\fBmissed\fR" 4
 .IX Item "missed"
 Print information about missed optimizations. Individual passes
-control which informations to include in the output. For example,
+control which information to include in the output. For example,
 .Sp
 .Vb 1
 \&        gcc \-O2 \-ftree\-vectorize \-fopt\-info\-vec\-missed
@@ -6233,18 +6268,6 @@ resulting executable can find the beginning of that section and/or make
 assumptions based on that.
 .Sp
 The default is \fB\-fzero\-initialized\-in\-bss\fR.
-.IP "\fB\-fsanitize=address\fR" 4
-.IX Item "-fsanitize=address"
-Enable AddressSanitizer, a fast memory error detector.
-Memory access instructions will be instrumented to detect
-out-of-bounds and use-after-free bugs.
-See <\fBhttp://code.google.com/p/address\-sanitizer/\fR> for more details.
-.IP "\fB\-fsanitize=thread\fR" 4
-.IX Item "-fsanitize=thread"
-Enable ThreadSanitizer, a fast data race detector.
-Memory access instructions will be instrumented to detect
-data race bugs. 
-See <\fBhttp://code.google.com/p/data\-race\-test/wiki/ThreadSanitizer\fR> for more details.
 .IP "\fB\-fmudflap \-fmudflapth \-fmudflapir\fR" 4
 .IX Item "-fmudflap -fmudflapth -fmudflapir"
 For front-ends that support it (C and \*(C+), instrument all risky
@@ -6348,6 +6371,15 @@ Not enabled at any optimization level.
 When \fB\-fgcse\-after\-reload\fR is enabled, a redundant load elimination
 pass is performed after reload.  The purpose of this pass is to clean up
 redundant spilling.
+.IP "\fB\-faggressive\-loop\-optimizations\fR" 4
+.IX Item "-faggressive-loop-optimizations"
+This option tells the loop optimizer to use language constraints to
+derive bounds for the number of iterations of a loop.  This assumes that
+loop code does not invoke undefined behavior by for example causing signed
+integer overflows or out-of-bound array accesses.  The bounds for the
+number of iterations of a loop are used to guide loop unrolling and peeling
+and loop exit test optimizations.
+This option is enabled by default.
 .IP "\fB\-funsafe\-loop\-optimizations\fR" 4
 .IX Item "-funsafe-loop-optimizations"
 This option tells the loop optimizer to assume that loop indices do not
@@ -7448,15 +7480,11 @@ Enabled by default with \fB\-funroll\-loops\fR.
 Assume that the current compilation unit represents the whole program being
 compiled.  All public functions and variables with the exception of \f(CW\*(C`main\*(C'\fR
 and those merged by attribute \f(CW\*(C`externally_visible\*(C'\fR become static functions
-and in effect are optimized more aggressively by interprocedural optimizers. If \fBgold\fR is used as the linker plugin, \f(CW\*(C`externally_visible\*(C'\fR attributes are automatically added to functions (not variable yet due to a current \fBgold\fR issue) that are accessed outside of \s-1LTO\s0 objects according to resolution file produced by \fBgold\fR.  For other linkers that cannot generate resolution file, explicit \f(CW\*(C`externally_visible\*(C'\fR attributes are still necessary.
-While this option is equivalent to proper use of the \f(CW\*(C`static\*(C'\fR keyword for
-programs consisting of a single file, in combination with option
-\&\fB\-flto\fR this flag can be used to
-compile many smaller scale programs since the functions and variables become
-local for the whole combined compilation unit, not for the single source file
-itself.
+and in effect are optimized more aggressively by interprocedural optimizers.
 .Sp
-This option implies \fB\-fwhole\-file\fR for Fortran programs.
+This option should not be used in combination with \f(CW\*(C`\-flto\*(C'\fR.
+Instead relying on a linker plugin should provide safer and more precise
+information.
 .IP "\fB\-flto[=\fR\fIn\fR\fB]\fR" 4
 .IX Item "-flto[=n]"
 This option runs the standard link-time optimizer.  When invoked
@@ -7685,7 +7713,7 @@ requires the complete toolchain to be aware of \s-1LTO\s0. It requires a linker 
 linker plugin support for basic functionality.  Additionally,
 \&\fBnm\fR, \fBar\fR and \fBranlib\fR
 need to support linker plugins to allow a full-featured build environment
-(capable of building static libraries etc). gcc provides the \fBgcc-ar\fR,
+(capable of building static libraries etc).  \s-1GCC\s0 provides the \fBgcc-ar\fR,
 \&\fBgcc-nm\fR, \fBgcc-ranlib\fR wrappers to pass the right options
 to these tools. With non fat \s-1LTO\s0 makefiles need to be modified to use them.
 .Sp
@@ -10153,6 +10181,109 @@ Some configurations of the compiler also support additional special
 options, usually for compatibility with other compilers on the same
 platform.
 .PP
+\fIAArch64 Options\fR
+.IX Subsection "AArch64 Options"
+.PP
+These options are defined for AArch64 implementations:
+.IP "\fB\-mbig\-endian\fR" 4
+.IX Item "-mbig-endian"
+Generate big-endian code.  This is the default when \s-1GCC\s0 is configured for an
+\&\fBaarch64_be\-*\-*\fR target.
+.IP "\fB\-mgeneral\-regs\-only\fR" 4
+.IX Item "-mgeneral-regs-only"
+Generate code which uses only the general registers.
+.IP "\fB\-mlittle\-endian\fR" 4
+.IX Item "-mlittle-endian"
+Generate little-endian code.  This is the default when \s-1GCC\s0 is configured for an
+\&\fBaarch64\-*\-*\fR but not an \fBaarch64_be\-*\-*\fR target.
+.IP "\fB\-mcmodel=tiny\fR" 4
+.IX Item "-mcmodel=tiny"
+Generate code for the tiny code model.  The program and its statically defined
+symbols must be within 1GB of each other.  Pointers are 64 bits.  Programs can
+be statically or dynamically linked.  This model is not fully implemented and
+mostly treated as \fBsmall\fR.
+.IP "\fB\-mcmodel=small\fR" 4
+.IX Item "-mcmodel=small"
+Generate code for the small code model.  The program and its statically defined
+symbols must be within 4GB of each other.  Pointers are 64 bits.  Programs can
+be statically or dynamically linked.  This is the default code model.
+.IP "\fB\-mcmodel=large\fR" 4
+.IX Item "-mcmodel=large"
+Generate code for the large code model.  This makes no assumptions about
+addresses and sizes of sections.  Pointers are 64 bits.  Programs can be
+statically linked only.
+.IP "\fB\-mstrict\-align\fR" 4
+.IX Item "-mstrict-align"
+Do not assume that unaligned memory references will be handled by the system.
+.IP "\fB\-momit\-leaf\-frame\-pointer\fR" 4
+.IX Item "-momit-leaf-frame-pointer"
+.PD 0
+.IP "\fB\-mno\-omit\-leaf\-frame\-pointer\fR" 4
+.IX Item "-mno-omit-leaf-frame-pointer"
+.PD
+Omit or keep the frame pointer in leaf functions.  The former behaviour is the
+default.
+.IP "\fB\-mtls\-dialect=desc\fR" 4
+.IX Item "-mtls-dialect=desc"
+Use \s-1TLS\s0 descriptors as the thread-local storage mechanism for dynamic accesses
+of \s-1TLS\s0 variables.  This is the default.
+.IP "\fB\-mtls\-dialect=traditional\fR" 4
+.IX Item "-mtls-dialect=traditional"
+Use traditional \s-1TLS\s0 as the thread-local storage mechanism for dynamic accesses
+of \s-1TLS\s0 variables.
+.IP "\fB\-march=\fR\fIname\fR" 4
+.IX Item "-march=name"
+Specify the name of the target architecture, optionally suffixed by one or
+more feature modifiers.  This option has the form
+\&\fB\-march=\fR\fIarch\fR{\fB+\fR[\fBno\fR]\fIfeature\fR}*, where the
+only value for \fIarch\fR is \fBarmv8\-a\fR.  The possible values for
+\&\fIfeature\fR are documented in the sub-section below.
+.Sp
+Where conflicting feature modifiers are specified, the right-most feature is
+used.
+.Sp
+\&\s-1GCC\s0 uses this name to determine what kind of instructions it can emit when
+generating assembly code.  This option can be used in conjunction with or
+instead of the \fB\-mcpu=\fR option.
+.IP "\fB\-mcpu=\fR\fIname\fR" 4
+.IX Item "-mcpu=name"
+Specify the name of the target processor, optionally suffixed by one or more
+feature modifiers.  This option has the form
+\&\fB\-mcpu=\fR\fIcpu\fR{\fB+\fR[\fBno\fR]\fIfeature\fR}*, where the
+possible values for \fIcpu\fR are \fBgeneric\fR, \fBlarge\fR.  The
+possible values for \fIfeature\fR are documented in the sub-section
+below.
+.Sp
+Where conflicting feature modifiers are specified, the right-most feature is
+used.
+.Sp
+\&\s-1GCC\s0 uses this name to determine what kind of instructions it can emit when
+generating assembly code.
+.IP "\fB\-mtune=\fR\fIname\fR" 4
+.IX Item "-mtune=name"
+Specify the name of the processor to tune the performance for.  The code will
+be tuned as if the target processor were of the type specified in this option,
+but still using instructions compatible with the target processor specified
+by a \fB\-mcpu=\fR option.  This option cannot be suffixed by feature
+modifiers.
+.PP
+\fB\-march\fR and \fB\-mcpu\fR feature modifiers
+.IX Subsection "-march and -mcpu feature modifiers"
+.PP
+Feature modifiers used with \fB\-march\fR and \fB\-mcpu\fR can be one
+the following:
+.IP "\fBcrypto\fR" 4
+.IX Item "crypto"
+Enable Crypto extension.  This implies Advanced \s-1SIMD\s0 is enabled.
+.IP "\fBfp\fR" 4
+.IX Item "fp"
+Enable floating-point instructions.
+.IP "\fBsimd\fR" 4
+.IX Item "simd"
+Enable Advanced \s-1SIMD\s0 instructions.  This implies floating-point instructions
+are enabled.  This is the default for all current possible values for options
+\&\fB\-march\fR and \fB\-mcpu=\fR.
+.PP
 \fIAdapteva Epiphany Options\fR
 .IX Subsection "Adapteva Epiphany Options"
 .PP
@@ -10293,109 +10424,6 @@ which specify use of that register as a fixed register,
 and \fBnone\fR, which means that no register is used for this
 purpose.  The default is \fB\-m1reg\-none\fR.
 .PP
-\fIAArch64 Options\fR
-.IX Subsection "AArch64 Options"
-.PP
-These options are defined for AArch64 implementations:
-.IP "\fB\-mbig\-endian\fR" 4
-.IX Item "-mbig-endian"
-Generate big-endian code.  This is the default when \s-1GCC\s0 is configured for an
-\&\fBaarch64_be\-*\-*\fR target.
-.IP "\fB\-mgeneral\-regs\-only\fR" 4
-.IX Item "-mgeneral-regs-only"
-Generate code which uses only the general registers.
-.IP "\fB\-mlittle\-endian\fR" 4
-.IX Item "-mlittle-endian"
-Generate little-endian code.  This is the default when \s-1GCC\s0 is configured for an
-\&\fBaarch64\-*\-*\fR but not an \fBaarch64_be\-*\-*\fR target.
-.IP "\fB\-mcmodel=tiny\fR" 4
-.IX Item "-mcmodel=tiny"
-Generate code for the tiny code model.  The program and its statically defined
-symbols must be within 1GB of each other.  Pointers are 64 bits.  Programs can
-be statically or dynamically linked.  This model is not fully implemented and
-mostly treated as \fBsmall\fR.
-.IP "\fB\-mcmodel=small\fR" 4
-.IX Item "-mcmodel=small"
-Generate code for the small code model.  The program and its statically defined
-symbols must be within 4GB of each other.  Pointers are 64 bits.  Programs can
-be statically or dynamically linked.  This is the default code model.
-.IP "\fB\-mcmodel=large\fR" 4
-.IX Item "-mcmodel=large"
-Generate code for the large code model.  This makes no assumptions about
-addresses and sizes of sections.  Pointers are 64 bits.  Programs can be
-statically linked only.
-.IP "\fB\-mstrict\-align\fR" 4
-.IX Item "-mstrict-align"
-Do not assume that unaligned memory references will be handled by the system.
-.IP "\fB\-momit\-leaf\-frame\-pointer\fR" 4
-.IX Item "-momit-leaf-frame-pointer"
-.PD 0
-.IP "\fB\-mno\-omit\-leaf\-frame\-pointer\fR" 4
-.IX Item "-mno-omit-leaf-frame-pointer"
-.PD
-Omit or keep the frame pointer in leaf functions.  The former behaviour is the
-default.
-.IP "\fB\-mtls\-dialect=desc\fR" 4
-.IX Item "-mtls-dialect=desc"
-Use \s-1TLS\s0 descriptors as the thread-local storage mechanism for dynamic accesses
-of \s-1TLS\s0 variables.  This is the default.
-.IP "\fB\-mtls\-dialect=traditional\fR" 4
-.IX Item "-mtls-dialect=traditional"
-Use traditional \s-1TLS\s0 as the thread-local storage mechanism for dynamic accesses
-of \s-1TLS\s0 variables.
-.IP "\fB\-march=\fR\fIname\fR" 4
-.IX Item "-march=name"
-Specify the name of the target architecture, optionally suffixed by one or
-more feature modifiers.  This option has the form
-\&\fB\-march=\fR\fIarch\fR{\fB+\fR[\fBno\fR]\fIfeature\fR}*, where the
-only value for \fIarch\fR is \fBarmv8\-a\fR.  The possible values for
-\&\fIfeature\fR are documented in the sub-section below.
-.Sp
-Where conflicting feature modifiers are specified, the right-most feature is
-used.
-.Sp
-\&\s-1GCC\s0 uses this name to determine what kind of instructions it can emit when
-generating assembly code.  This option can be used in conjunction with or
-instead of the \fB\-mcpu=\fR option.
-.IP "\fB\-mcpu=\fR\fIname\fR" 4
-.IX Item "-mcpu=name"
-Specify the name of the target processor, optionally suffixed by one or more
-feature modifiers.  This option has the form
-\&\fB\-mcpu=\fR\fIcpu\fR{\fB+\fR[\fBno\fR]\fIfeature\fR}*, where the
-possible values for \fIcpu\fR are \fBgeneric\fR, \fBlarge\fR.  The
-possible values for \fIfeature\fR are documented in the sub-section
-below.
-.Sp
-Where conflicting feature modifiers are specified, the right-most feature is
-used.
-.Sp
-\&\s-1GCC\s0 uses this name to determine what kind of instructions it can emit when
-generating assembly code.
-.IP "\fB\-mtune=\fR\fIname\fR" 4
-.IX Item "-mtune=name"
-Specify the name of the processor to tune the performance for.  The code will
-be tuned as if the target processor were of the type specified in this option,
-but still using instructions compatible with the target processor specified
-by a \fB\-mcpu=\fR option.  This option cannot be suffixed by feature
-modifiers.
-.PP
-\fB\-march\fR and \fB\-mcpu\fR feature modifiers
-.IX Subsection "-march and -mcpu feature modifiers"
-.PP
-Feature modifiers used with \fB\-march\fR and \fB\-mcpu\fR can be one
-the following:
-.IP "\fBcrypto\fR" 4
-.IX Item "crypto"
-Enable Crypto extension.  This implies Advanced \s-1SIMD\s0 is enabled.
-.IP "\fBfp\fR" 4
-.IX Item "fp"
-Enable floating-point instructions.
-.IP "\fBsimd\fR" 4
-.IX Item "simd"
-Enable Advanced \s-1SIMD\s0 instructions.  This implies floating-point instructions
-are enabled.  This is the default for all current possible values for options
-\&\fB\-march\fR and \fB\-mcpu=\fR.
-.PP
 \fI\s-1ARM\s0 Options\fR
 .IX Subsection "ARM Options"
 .PP
@@ -10486,11 +10514,12 @@ assembly code.  Permissible names are: \fBarm2\fR, \fBarm250\fR,
 \&\fBarm1136j\-s\fR, \fBarm1136jf\-s\fR, \fBmpcore\fR, \fBmpcorenovfp\fR,
 \&\fBarm1156t2\-s\fR, \fBarm1156t2f\-s\fR, \fBarm1176jz\-s\fR, \fBarm1176jzf\-s\fR,
 \&\fBcortex\-a5\fR, \fBcortex\-a7\fR, \fBcortex\-a8\fR, \fBcortex\-a9\fR, 
-\&\fBcortex\-a15\fR, \fBcortex\-r4\fR, \fBcortex\-r4f\fR, \fBcortex\-r5\fR,
-\&\fBcortex\-m4\fR, \fBcortex\-m3\fR,
+\&\fBcortex\-a15\fR, \fBcortex\-a53\fR, \fBcortex\-r4\fR, \fBcortex\-r4f\fR,
+\&\fBcortex\-r5\fR, \fBcortex\-r7\fR, \fBcortex\-m4\fR, \fBcortex\-m3\fR,
 \&\fBcortex\-m1\fR,
 \&\fBcortex\-m0\fR,
 \&\fBcortex\-m0plus\fR,
+\&\fBmarvell\-pj4\fR,
 \&\fBxscale\fR, \fBiwmmxt\fR, \fBiwmmxt2\fR, \fBep9312\fR,
 \&\fBfa526\fR, \fBfa626\fR,
 \&\fBfa606te\fR, \fBfa626te\fR, \fBfmp626\fR, \fBfa726te\fR.
@@ -10732,6 +10761,11 @@ generated object file to either true or false, depending upon the
 setting of this option.  If unaligned access is enabled then the
 preprocessor symbol \f(CW\*(C`_\|_ARM_FEATURE_UNALIGNED\*(C'\fR will also be
 defined.
+.IP "\fB\-mneon\-for\-64bits\fR" 4
+.IX Item "-mneon-for-64bits"
+Enables using Neon to handle scalar 64\-bits operations. This is
+disabled by default since the cost of moving data from core registers
+to Neon is high.
 .PP
 \fI\s-1AVR\s0 Options\fR
 .IX Subsection "AVR Options"
@@ -10754,7 +10788,7 @@ The default for this option is@tie{}\f(CW\*(C`avr2\*(C'\fR.
 .el .IP "\f(CWavr25\fR" 4
 .IX Item "avr25"
 \&\*(L"Classic\*(R" devices with up to 8@tie{}KiB of program memory and with the \f(CW\*(C`MOVW\*(C'\fR instruction.
-\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`ata6289\*(C'\fR, \f(CW\*(C`attiny13\*(C'\fR, \f(CW\*(C`attiny13a\*(C'\fR, \f(CW\*(C`attiny2313\*(C'\fR, \f(CW\*(C`attiny2313a\*(C'\fR, \f(CW\*(C`attiny24\*(C'\fR, \f(CW\*(C`attiny24a\*(C'\fR, \f(CW\*(C`attiny25\*(C'\fR, \f(CW\*(C`attiny261\*(C'\fR, \f(CW\*(C`attiny261a\*(C'\fR, \f(CW\*(C`attiny43u\*(C'\fR, \f(CW\*(C`attiny4313\*(C'\fR, \f(CW\*(C`attiny44\*(C'\fR, \f(CW\*(C`attiny44a\*(C'\fR, \f(CW\*(C`attiny45\*(C'\fR, \f(CW\*(C`attiny461\*(C'\fR, \f(CW\*(C`attiny461a\*(C'\fR, \f(CW\*(C`attiny48\*(C'\fR, \f(CW\*(C`attiny84\*(C'\fR, \f(CW\*(C`attiny84a\*(C'\fR, \f(CW\*(C`attiny85\*(C'\fR, \f(CW\*(C`attiny861\*(C'\fR, \f(CW\*(C`attiny861a\*(C'\fR, \f(CW\*(C`attiny87\*(C'\fR, \f(CW\*(C`attiny88\*(C'\fR, \f(CW\*(C`at86rf401\*(C'\fR.
+\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`ata5272\*(C'\fR, \f(CW\*(C`ata6289\*(C'\fR, \f(CW\*(C`attiny13\*(C'\fR, \f(CW\*(C`attiny13a\*(C'\fR, \f(CW\*(C`attiny2313\*(C'\fR, \f(CW\*(C`attiny2313a\*(C'\fR, \f(CW\*(C`attiny24\*(C'\fR, \f(CW\*(C`attiny24a\*(C'\fR, \f(CW\*(C`attiny25\*(C'\fR, \f(CW\*(C`attiny261\*(C'\fR, \f(CW\*(C`attiny261a\*(C'\fR, \f(CW\*(C`attiny43u\*(C'\fR, \f(CW\*(C`attiny4313\*(C'\fR, \f(CW\*(C`attiny44\*(C'\fR, \f(CW\*(C`attiny44a\*(C'\fR, \f(CW\*(C`attiny45\*(C'\fR, \f(CW\*(C`attiny461\*(C'\fR, \f(CW\*(C`attiny461a\*(C'\fR, \f(CW\*(C`attiny48\*(C'\fR, \f(CW\*(C`attiny84\*(C'\fR, \f(CW\*(C`attiny84a\*(C'\fR, \f(CW\*(C`attiny85\*(C'\fR, \f(CW\*(C`attiny861\*(C'\fR, \f(CW\*(C`attiny861a\*(C'\fR, \f(CW\*(C`attiny87\*(C'\fR, \f(CW\*(C`attiny88\*(C'\fR, \f(CW\*(C`at86rf401\*(C'\fR.
 .ie n .IP """avr3""" 4
 .el .IP "\f(CWavr3\fR" 4
 .IX Item "avr3"
@@ -10769,22 +10803,22 @@ The default for this option is@tie{}\f(CW\*(C`avr2\*(C'\fR.
 .el .IP "\f(CWavr35\fR" 4
 .IX Item "avr35"
 \&\*(L"Classic\*(R" devices with 16@tie{}KiB up to 64@tie{}KiB of program memory and with the \f(CW\*(C`MOVW\*(C'\fR instruction.
-\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atmega16u2\*(C'\fR, \f(CW\*(C`atmega32u2\*(C'\fR, \f(CW\*(C`atmega8u2\*(C'\fR, \f(CW\*(C`attiny167\*(C'\fR, \f(CW\*(C`at90usb162\*(C'\fR, \f(CW\*(C`at90usb82\*(C'\fR.
+\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`ata5505\*(C'\fR, \f(CW\*(C`atmega16u2\*(C'\fR, \f(CW\*(C`atmega32u2\*(C'\fR, \f(CW\*(C`atmega8u2\*(C'\fR, \f(CW\*(C`attiny1634\*(C'\fR, \f(CW\*(C`attiny167\*(C'\fR, \f(CW\*(C`at90usb162\*(C'\fR, \f(CW\*(C`at90usb82\*(C'\fR.
 .ie n .IP """avr4""" 4
 .el .IP "\f(CWavr4\fR" 4
 .IX Item "avr4"
 \&\*(L"Enhanced\*(R" devices with up to 8@tie{}KiB of program memory.
-\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atmega48\*(C'\fR, \f(CW\*(C`atmega48a\*(C'\fR, \f(CW\*(C`atmega48p\*(C'\fR, \f(CW\*(C`atmega8\*(C'\fR, \f(CW\*(C`atmega8hva\*(C'\fR, \f(CW\*(C`atmega8515\*(C'\fR, \f(CW\*(C`atmega8535\*(C'\fR, \f(CW\*(C`atmega88\*(C'\fR, \f(CW\*(C`atmega88a\*(C'\fR, \f(CW\*(C`atmega88p\*(C'\fR, \f(CW\*(C`atmega88pa\*(C'\fR, \f(CW\*(C`at90pwm1\*(C'\fR, \f(CW\*(C`at90pwm2\*(C'\fR, \f(CW\*(C`at90pwm2b\*(C'\fR, \f(CW\*(C`at90pwm3\*(C'\fR, \f(CW\*(C`at90pwm3b\*(C'\fR, \f(CW\*(C`at90pwm81\*(C'\fR.
+\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`ata6285\*(C'\fR, \f(CW\*(C`ata6286\*(C'\fR, \f(CW\*(C`atmega48\*(C'\fR, \f(CW\*(C`atmega48a\*(C'\fR, \f(CW\*(C`atmega48p\*(C'\fR, \f(CW\*(C`atmega48pa\*(C'\fR, \f(CW\*(C`atmega8\*(C'\fR, \f(CW\*(C`atmega8a\*(C'\fR, \f(CW\*(C`atmega8hva\*(C'\fR, \f(CW\*(C`atmega8515\*(C'\fR, \f(CW\*(C`atmega8535\*(C'\fR, \f(CW\*(C`atmega88\*(C'\fR, \f(CW\*(C`atmega88a\*(C'\fR, \f(CW\*(C`atmega88p\*(C'\fR, \f(CW\*(C`atmega88pa\*(C'\fR, \f(CW\*(C`at90pwm1\*(C'\fR, \f(CW\*(C`at90pwm2\*(C'\fR, \f(CW\*(C`at90pwm2b\*(C'\fR, \f(CW\*(C`at90pwm3\*(C'\fR, \f(CW\*(C`at90pwm3b\*(C'\fR, \f(CW\*(C`at90pwm81\*(C'\fR.
 .ie n .IP """avr5""" 4
 .el .IP "\f(CWavr5\fR" 4
 .IX Item "avr5"
 \&\*(L"Enhanced\*(R" devices with 16@tie{}KiB up to 64@tie{}KiB of program memory.
-\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atmega16\*(C'\fR, \f(CW\*(C`atmega16a\*(C'\fR, \f(CW\*(C`atmega16hva\*(C'\fR, \f(CW\*(C`atmega16hva2\*(C'\fR, \f(CW\*(C`atmega16hvb\*(C'\fR, \f(CW\*(C`atmega16m1\*(C'\fR, \f(CW\*(C`atmega16u4\*(C'\fR, \f(CW\*(C`atmega161\*(C'\fR, \f(CW\*(C`atmega162\*(C'\fR, \f(CW\*(C`atmega163\*(C'\fR, \f(CW\*(C`atmega164a\*(C'\fR, \f(CW\*(C`atmega164p\*(C'\fR, \f(CW\*(C`atmega165\*(C'\fR, \f(CW\*(C`atmega165a\*(C'\fR, \f(CW\*(C`atmega165p\*(C'\fR, \f(CW\*(C`atmega168\*(C'\fR, \f(CW\*(C`atmega168a\*(C'\fR, \f(CW\*(C`atmega168p\*(C'\fR, \f(CW\*(C`atmega169\*(C'\fR, \f(CW\*(C`atmega169a\*(C'\fR, \f(CW\*(C`atmega169p\*(C'\fR, \f(CW\*(C`atmega169pa\*(C'\fR, \f(CW\*(C`atmega32\*(C'\fR, \f(CW\*(C`atmega32c1\*(C'\fR, \f(CW\*(C`atmega32hvb\*(C'\fR, \f(CW\*(C`atmega32m1\*(C'\fR, \f(CW\*(C`atmega32u4\*(C'\fR, \f(CW\*(C`atmega32u6\*(C'\fR, \f(CW\*(C`atmega323\*(C'\fR, \f(CW\*(C`atmega324a\*(C'\fR, \f(CW\*(C`atmega324p\*(C'\fR, \f(CW\*(C`atmega324pa\*(C'\fR, \f(CW\*(C`atmega325\*(C'\fR, \f(CW\*(C`atmega325a\*(C'\fR, \f(CW\*(C`atmega325p\*(C'\fR, \f(CW\*(C`atmega3250\*(C'\fR, \f(CW\*(C`atmega3250a\*(C'\fR, \f(CW\*(C`atmega3250p\*(C'\fR, \f(CW\*(C`atmega328\*(C'\fR, \f(CW\*(C`atmega328p\*(C'\fR, \f(CW\*(C`atmega329\*(C'\fR, \f(CW\*(C`atmega329a\*(C'\fR, \f(CW\*(C`atmega329p\*(C'\fR, \f(CW\*(C`atmega329pa\*(C'\fR, \f(CW\*(C`atmega3290\*(C'\fR, \f(CW\*(C`atmega3290a\*(C'\fR, \f(CW\*(C`atmega3290p\*(C'\fR, \f(CW\*(C`atmega406\*(C'\fR, \f(CW\*(C`atmega64\*(C'\fR, \f(CW\*(C`atmega64c1\*(C'\fR, \f(CW\*(C`atmega64hve\*(C'\fR, \f(CW\*(C`atmega64m1\*(C'\fR, \f(CW\*(C`atmega640\*(C'\fR, \f(CW\*(C`atmega644\*(C'\fR, \f(CW\*(C`atmega644a\*(C'\fR, \f(CW\*(C`atmega644p\*(C'\fR, \f(CW\*(C`atmega644pa\*(C'\fR, \f(CW\*(C`atmega645\*(C'\fR, \f(CW\*(C`atmega645a\*(C'\fR, \f(CW\*(C`atmega645p\*(C'\fR, \f(CW\*(C`atmega6450\*(C'\fR, \f(CW\*(C`atmega6450a\*(C'\fR, \f(CW\*(C`atmega6450p\*(C'\fR, \f(CW\*(C`atmega649\*(C'\fR, \f(CW\*(C`atmega649a\*(C'\fR, \f(CW\*(C`atmega649p\*(C'\fR, \f(CW\*(C`atmega6490\*(C'\fR, \f(CW\*(C`at90can32\*(C'\fR, \f(CW\*(C`at90can64\*(C'\fR, \f(CW\*(C`at90pwm216\*(C'\fR, \f(CW\*(C`at90pwm316\*(C'\fR, \f(CW\*(C`at90scr100\*(C'\fR, \f(CW\*(C`at90usb646\*(C'\fR, \f(CW\*(C`at90usb647\*(C'\fR, \f(CW\*(C`at94k\*(C'\fR, \f(CW\*(C`m3000\*(C'\fR.
+\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`ata5790\*(C'\fR, \f(CW\*(C`ata5790n\*(C'\fR, \f(CW\*(C`ata5795\*(C'\fR, \f(CW\*(C`atmega16\*(C'\fR, \f(CW\*(C`atmega16a\*(C'\fR, \f(CW\*(C`atmega16hva\*(C'\fR, \f(CW\*(C`atmega16hva\*(C'\fR, \f(CW\*(C`atmega16hva2\*(C'\fR, \f(CW\*(C`atmega16hva2\*(C'\fR, \f(CW\*(C`atmega16hvb\*(C'\fR, \f(CW\*(C`atmega16hvb\*(C'\fR, \f(CW\*(C`atmega16hvbrevb\*(C'\fR, \f(CW\*(C`atmega16m1\*(C'\fR, \f(CW\*(C`atmega16m1\*(C'\fR, \f(CW\*(C`atmega16u4\*(C'\fR, \f(CW\*(C`atmega16u4\*(C'\fR, \f(CW\*(C`atmega161\*(C'\fR, \f(CW\*(C`atmega162\*(C'\fR, \f(CW\*(C`atmega163\*(C'\fR, \f(CW\*(C`atmega164a\*(C'\fR, \f(CW\*(C`atmega164p\*(C'\fR, \f(CW\*(C`atmega164pa\*(C'\fR, \f(CW\*(C`atmega165\*(C'\fR, \f(CW\*(C`atmega165a\*(C'\fR, \f(CW\*(C`atmega165p\*(C'\fR, \f(CW\*(C`atmega165pa\*(C'\fR, \f(CW\*(C`atmega168\*(C'\fR, \f(CW\*(C`atmega168a\*(C'\fR, \f(CW\*(C`atmega168p\*(C'\fR, \f(CW\*(C`atmega168pa\*(C'\fR, \f(CW\*(C`atmega169\*(C'\fR, \f(CW\*(C`atmega169a\*(C'\fR, \f(CW\*(C`atmega169p\*(C'\fR, \f(CW\*(C`atmega169pa\*(C'\fR, \f(CW\*(C`atmega26hvg\*(C'\fR, \f(CW\*(C`atmega32\*(C'\fR, \f(CW\*(C`atmega32a\*(C'\fR, \f(CW\*(C`atmega32a\*(C'\fR, \f(CW\*(C`atmega32c1\*(C'\fR, \f(CW\*(C`atmega32c1\*(C'\fR, \f(CW\*(C`atmega32hvb\*(C'\fR, \f(CW\*(C`atmega32hvb\*(C'\fR, \f(CW\*(C`atmega32hvbrevb\*(C'\fR, \f(CW\*(C`atmega32m1\*(C'\fR, \f(CW\*(C`atmega32m1\*(C'\fR, \f(CW\*(C`atmega32u4\*(C'\fR, \f(CW\*(C`atmega32u4\*(C'\fR, \f(CW\*(C`atmega32u6\*(C'\fR, \f(CW\*(C`atmega32u6\*(C'\fR, \f(CW\*(C`atmega323\*(C'\fR, \f(CW\*(C`atmega324a\*(C'\fR, \f(CW\*(C`atmega324p\*(C'\fR, \f(CW\*(C`atmega324pa\*(C'\fR, \f(CW\*(C`atmega325\*(C'\fR, \f(CW\*(C`atmega325a\*(C'\fR, \f(CW\*(C`atmega325p\*(C'\fR, \f(CW\*(C`atmega3250\*(C'\fR, \f(CW\*(C`atmega3250a\*(C'\fR, \f(CW\*(C`atmega3250p\*(C'\fR, \f(CW\*(C`atmega3250pa\*(C'\fR, \f(CW\*(C`atmega328\*(C'\fR, \f(CW\*(C`atmega328p\*(C'\fR, \f(CW\*(C`atmega329\*(C'\fR, \f(CW\*(C`atmega329a\*(C'\fR, \f(CW\*(C`atmega329p\*(C'\fR, \f(CW\*(C`atmega329pa\*(C'\fR, \f(CW\*(C`atmega3290\*(C'\fR, \f(CW\*(C`atmega3290a\*(C'\fR, \f(CW\*(C`atmega3290p\*(C'\fR, \f(CW\*(C`atmega3290pa\*(C'\fR, \f(CW\*(C`atmega406\*(C'\fR, \f(CW\*(C`atmega48hvf\*(C'\fR, \f(CW\*(C`atmega64\*(C'\fR, \f(CW\*(C`atmega64a\*(C'\fR, \f(CW\*(C`atmega64c1\*(C'\fR, \f(CW\*(C`atmega64c1\*(C'\fR, \f(CW\*(C`atmega64hve\*(C'\fR, \f(CW\*(C`atmega64m1\*(C'\fR, \f(CW\*(C`atmega64m1\*(C'\fR, \f(CW\*(C`atmega64rfa2\*(C'\fR, \f(CW\*(C`atmega64rfr2\*(C'\fR, \f(CW\*(C`atmega640\*(C'\fR, \f(CW\*(C`atmega644\*(C'\fR, \f(CW\*(C`atmega644a\*(C'\fR, \f(CW\*(C`atmega644p\*(C'\fR, \f(CW\*(C`atmega644pa\*(C'\fR, \f(CW\*(C`atmega645\*(C'\fR, \f(CW\*(C`atmega645a\*(C'\fR, \f(CW\*(C`atmega645p\*(C'\fR, \f(CW\*(C`atmega6450\*(C'\fR, \f(CW\*(C`atmega6450a\*(C'\fR, \f(CW\*(C`atmega6450p\*(C'\fR, \f(CW\*(C`atmega649\*(C'\fR, \f(CW\*(C`atmega649a\*(C'\fR, \f(CW\*(C`atmega649p\*(C'\fR, \f(CW\*(C`atmega6490\*(C'\fR, \f(CW\*(C`atmega6490a\*(C'\fR, \f(CW\*(C`atmega6490p\*(C'\fR, \f(CW\*(C`at90can32\*(C'\fR, \f(CW\*(C`at90can64\*(C'\fR, \f(CW\*(C`at90pwm161\*(C'\fR, \f(CW\*(C`at90pwm216\*(C'\fR, \f(CW\*(C`at90pwm316\*(C'\fR, \f(CW\*(C`at90scr100\*(C'\fR, \f(CW\*(C`at90usb646\*(C'\fR, \f(CW\*(C`at90usb647\*(C'\fR, \f(CW\*(C`at94k\*(C'\fR, \f(CW\*(C`m3000\*(C'\fR.
 .ie n .IP """avr51""" 4
 .el .IP "\f(CWavr51\fR" 4
 .IX Item "avr51"
 \&\*(L"Enhanced\*(R" devices with 128@tie{}KiB of program memory.
-\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atmega128\*(C'\fR, \f(CW\*(C`atmega128rfa1\*(C'\fR, \f(CW\*(C`atmega1280\*(C'\fR, \f(CW\*(C`atmega1281\*(C'\fR, \f(CW\*(C`atmega1284p\*(C'\fR, \f(CW\*(C`at90can128\*(C'\fR, \f(CW\*(C`at90usb1286\*(C'\fR, \f(CW\*(C`at90usb1287\*(C'\fR.
+\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atmega128\*(C'\fR, \f(CW\*(C`atmega128a\*(C'\fR, \f(CW\*(C`atmega128rfa1\*(C'\fR, \f(CW\*(C`atmega1280\*(C'\fR, \f(CW\*(C`atmega1281\*(C'\fR, \f(CW\*(C`atmega1284\*(C'\fR, \f(CW\*(C`atmega1284p\*(C'\fR, \f(CW\*(C`at90can128\*(C'\fR, \f(CW\*(C`at90usb1286\*(C'\fR, \f(CW\*(C`at90usb1287\*(C'\fR.
 .ie n .IP """avr6""" 4
 .el .IP "\f(CWavr6\fR" 4
 .IX Item "avr6"
@@ -10794,12 +10828,12 @@ The default for this option is@tie{}\f(CW\*(C`avr2\*(C'\fR.
 .el .IP "\f(CWavrxmega2\fR" 4
 .IX Item "avrxmega2"
 \&\*(L"\s-1XMEGA\s0\*(R" devices with more than 8@tie{}KiB and up to 64@tie{}KiB of program memory.
-\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atxmega16a4\*(C'\fR, \f(CW\*(C`atxmega16d4\*(C'\fR, \f(CW\*(C`atxmega16x1\*(C'\fR, \f(CW\*(C`atxmega32a4\*(C'\fR, \f(CW\*(C`atxmega32d4\*(C'\fR, \f(CW\*(C`atxmega32x1\*(C'\fR.
+\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atmxt112sl\*(C'\fR, \f(CW\*(C`atmxt224\*(C'\fR, \f(CW\*(C`atmxt224e\*(C'\fR, \f(CW\*(C`atmxt336s\*(C'\fR, \f(CW\*(C`atxmega16a4\*(C'\fR, \f(CW\*(C`atxmega16a4u\*(C'\fR, \f(CW\*(C`atxmega16c4\*(C'\fR, \f(CW\*(C`atxmega16d4\*(C'\fR, \f(CW\*(C`atxmega16x1\*(C'\fR, \f(CW\*(C`atxmega32a4\*(C'\fR, \f(CW\*(C`atxmega32a4u\*(C'\fR, \f(CW\*(C`atxmega32c4\*(C'\fR, \f(CW\*(C`atxmega32d4\*(C'\fR, \f(CW\*(C`atxmega32e5\*(C'\fR, \f(CW\*(C`atxmega32x1\*(C'\fR.
 .ie n .IP """avrxmega4""" 4
 .el .IP "\f(CWavrxmega4\fR" 4
 .IX Item "avrxmega4"
 \&\*(L"\s-1XMEGA\s0\*(R" devices with more than 64@tie{}KiB and up to 128@tie{}KiB of program memory.
-\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atxmega64a3\*(C'\fR, \f(CW\*(C`atxmega64d3\*(C'\fR.
+\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atxmega64a3\*(C'\fR, \f(CW\*(C`atxmega64a3u\*(C'\fR, \f(CW\*(C`atxmega64a4u\*(C'\fR, \f(CW\*(C`atxmega64b1\*(C'\fR, \f(CW\*(C`atxmega64b3\*(C'\fR, \f(CW\*(C`atxmega64c3\*(C'\fR, \f(CW\*(C`atxmega64d3\*(C'\fR, \f(CW\*(C`atxmega64d4\*(C'\fR.
 .ie n .IP """avrxmega5""" 4
 .el .IP "\f(CWavrxmega5\fR" 4
 .IX Item "avrxmega5"
@@ -10809,12 +10843,12 @@ The default for this option is@tie{}\f(CW\*(C`avr2\*(C'\fR.
 .el .IP "\f(CWavrxmega6\fR" 4
 .IX Item "avrxmega6"
 \&\*(L"\s-1XMEGA\s0\*(R" devices with more than 128@tie{}KiB of program memory.
-\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atxmega128a3\*(C'\fR, \f(CW\*(C`atxmega128d3\*(C'\fR, \f(CW\*(C`atxmega192a3\*(C'\fR, \f(CW\*(C`atxmega192d3\*(C'\fR, \f(CW\*(C`atxmega256a3\*(C'\fR, \f(CW\*(C`atxmega256a3b\*(C'\fR, \f(CW\*(C`atxmega256a3bu\*(C'\fR, \f(CW\*(C`atxmega256d3\*(C'\fR.
+\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atmxt540s\*(C'\fR, \f(CW\*(C`atmxt540sreva\*(C'\fR, \f(CW\*(C`atxmega128a3\*(C'\fR, \f(CW\*(C`atxmega128a3u\*(C'\fR, \f(CW\*(C`atxmega128b1\*(C'\fR, \f(CW\*(C`atxmega128b3\*(C'\fR, \f(CW\*(C`atxmega128c3\*(C'\fR, \f(CW\*(C`atxmega128d3\*(C'\fR, \f(CW\*(C`atxmega128d4\*(C'\fR, \f(CW\*(C`atxmega192a3\*(C'\fR, \f(CW\*(C`atxmega192a3u\*(C'\fR, \f(CW\*(C`atxmega192c3\*(C'\fR, \f(CW\*(C`atxmega192d3\*(C'\fR, \f(CW\*(C`atxmega256a3\*(C'\fR, \f(CW\*(C`atxmega256a3b\*(C'\fR, \f(CW\*(C`atxmega256a3bu\*(C'\fR, \f(CW\*(C`atxmega256a3u\*(C'\fR, \f(CW\*(C`atxmega256c3\*(C'\fR, \f(CW\*(C`atxmega256d3\*(C'\fR, \f(CW\*(C`atxmega384c3\*(C'\fR, \f(CW\*(C`atxmega384d3\*(C'\fR.
 .ie n .IP """avrxmega7""" 4
 .el .IP "\f(CWavrxmega7\fR" 4
 .IX Item "avrxmega7"
 \&\*(L"\s-1XMEGA\s0\*(R" devices with more than 128@tie{}KiB of program memory and more than 64@tie{}KiB of \s-1RAM\s0.
-\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atxmega128a1\*(C'\fR, \f(CW\*(C`atxmega128a1u\*(C'\fR.
+\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atxmega128a1\*(C'\fR, \f(CW\*(C`atxmega128a1u\*(C'\fR, \f(CW\*(C`atxmega128a4u\*(C'\fR.
 .ie n .IP """avr1""" 4
 .el .IP "\f(CWavr1\fR" 4
 .IX Item "avr1"
@@ -10907,6 +10941,10 @@ performed as
 .IP "\fB\-mtiny\-stack\fR" 4
 .IX Item "-mtiny-stack"
 Only change the lower 8@tie{}bits of the stack pointer.
+.IP "\fB\-Waddr\-space\-convert\fR" 4
+.IX Item "-Waddr-space-convert"
+Warn about conversions between address spaces in the case where the
+resulting address space is not contained in the incoming address space.
 .PP
 \f(CW\*(C`EIND\*(C'\fR and Devices with more than 128 Ki Bytes of Flash
 .IX Subsection "EIND and Devices with more than 128 Ki Bytes of Flash"
@@ -10955,7 +10993,7 @@ points to.
 The startup code from libgcc never sets \f(CW\*(C`EIND\*(C'\fR.
 Notice that startup code is a blend of code from libgcc and AVR-LibC.
 For the impact of AVR-LibC on \f(CW\*(C`EIND\*(C'\fR, see the
-AVR-LibC\ user\ manual (\f(CW\*(C`http://nongnu.org/avr\-libc/user\-manual\*(C'\fR).
+AVR-LibC\ user\ manual (\f(CW\*(C`http://nongnu.org/avr\-libc/user\-manual/\*(C'\fR).
 .IP "\(bu" 4
 It is legitimate for user-specific startup code to set up \f(CW\*(C`EIND\*(C'\fR
 early, for example by means of initialization code located in
@@ -11125,6 +11163,10 @@ the device name as from the \s-1AVR\s0 user manual. The difference between
 .Sp
 If \fIdevice\fR is not a device but only a core architecture like
 \&\f(CW\*(C`avr51\*(C'\fR, this macro will not be defined.
+.ie n .IP """_\|_AVR_XMEGA_\|_""" 4
+.el .IP "\f(CW_\|_AVR_XMEGA_\|_\fR" 4
+.IX Item "__AVR_XMEGA__"
+The device / architecture belongs to the \s-1XMEGA\s0 family of devices.
 .ie n .IP """_\|_AVR_HAVE_ELPM_\|_""" 4
 .el .IP "\f(CW_\|_AVR_HAVE_ELPM_\|_\fR" 4
 .IX Item "__AVR_HAVE_ELPM__"
@@ -11629,7 +11671,7 @@ linker multiple times and joining the results together with
 .PP
 The subtype of the file created (like \fBppc7400\fR or \fBppc970\fR or
 \&\fBi686\fR) is determined by the flags that specify the \s-1ISA\s0
-that \s-1GCC\s0 is targetting, like \fB\-mcpu\fR or \fB\-march\fR.  The
+that \s-1GCC\s0 is targeting, like \fB\-mcpu\fR or \fB\-march\fR.  The
 \&\fB\-force_cpusubtype_ALL\fR option can be used to override this.
 .PP
 The Darwin tools vary in their behavior when presented with an \s-1ISA\s0
@@ -14879,6 +14921,15 @@ Use hardware floating-point conversion instructions.
 .IP "\fB\-mxl\-float\-sqrt\fR" 4
 .IX Item "-mxl-float-sqrt"
 Use hardware floating-point square root instruction.
+.IP "\fB\-mbig\-endian\fR" 4
+.IX Item "-mbig-endian"
+Generate code for a big-endian target.
+.IP "\fB\-mlittle\-endian\fR" 4
+.IX Item "-mlittle-endian"
+Generate code for a little-endian target.
+.IP "\fB\-mxl\-reorder\fR" 4
+.IX Item "-mxl-reorder"
+Use reorder instructions (swap and byte reversed load/store).
 .IP "\fB\-mxl\-mode\-\fR\fIapp-model\fR" 4
 .IX Item "-mxl-mode-app-model"
 Select application model \fIapp-model\fR.  Valid models are
@@ -14937,10 +14988,11 @@ The processor names are:
 \&\fB1004kc\fR, \fB1004kf2_1\fR, \fB1004kf1_1\fR,
 \&\fBloongson2e\fR, \fBloongson2f\fR, \fBloongson3a\fR,
 \&\fBm4k\fR,
+\&\fBm14k\fR, \fBm14ke\fR, \fBm14kec\fR,
 \&\fBocteon\fR, \fBocteon+\fR, \fBocteon2\fR,
 \&\fBorion\fR,
 \&\fBr2000\fR, \fBr3000\fR, \fBr3900\fR, \fBr4000\fR, \fBr4400\fR,
-\&\fBr4600\fR, \fBr4650\fR, \fBr6000\fR, \fBr8000\fR,
+\&\fBr4600\fR, \fBr4650\fR, \fBr4700\fR, \fBr6000\fR, \fBr8000\fR,
 \&\fBrm7000\fR, \fBrm9000\fR,
 \&\fBr10000\fR, \fBr12000\fR, \fBr14000\fR, \fBr16000\fR,
 \&\fBsb1\fR,
@@ -15039,19 +15091,28 @@ by means of \f(CW\*(C`mips16\*(C'\fR and \f(CW\*(C`nomips16\*(C'\fR attributes.
 Generate \s-1MIPS16\s0 code on alternating functions.  This option is provided
 for regression testing of mixed MIPS16/non\-MIPS16 code generation, and is
 not intended for ordinary use in compiling user code.
+.IP "\fB\-minterlink\-compressed\fR" 4
+.IX Item "-minterlink-compressed"
+.PD 0
+.IP "\fB\-mno\-interlink\-compressed\fR" 4
+.IX Item "-mno-interlink-compressed"
+.PD
+Require (do not require) that code using the standard (uncompressed) \s-1MIPS\s0 \s-1ISA\s0
+be link-compatible with \s-1MIPS16\s0 and microMIPS code, and vice versa.
+.Sp
+For example, code using the standard \s-1ISA\s0 encoding cannot jump directly
+to \s-1MIPS16\s0 or microMIPS code; it must either use a call or an indirect jump.
+\&\fB\-minterlink\-compressed\fR therefore disables direct jumps unless \s-1GCC\s0
+knows that the target of the jump is not compressed.
 .IP "\fB\-minterlink\-mips16\fR" 4
 .IX Item "-minterlink-mips16"
 .PD 0
 .IP "\fB\-mno\-interlink\-mips16\fR" 4
 .IX Item "-mno-interlink-mips16"
 .PD
-Require (do not require) that non\-MIPS16 code be link-compatible with
-\&\s-1MIPS16\s0 code.
-.Sp
-For example, non\-MIPS16 code cannot jump directly to \s-1MIPS16\s0 code;
-it must either use a call or an indirect jump.  \fB\-minterlink\-mips16\fR
-therefore disables direct jumps unless \s-1GCC\s0 knows that the target of the
-jump is not \s-1MIPS16\s0.
+Aliases of \fB\-minterlink\-compressed\fR and
+\&\fB\-mno\-interlink\-compressed\fR.  These options predate the microMIPS \s-1ASE\s0
+and are retained for backwards compatiblity.
 .IP "\fB\-mabi=32\fR" 4
 .IX Item "-mabi=32"
 .PD 0
@@ -15269,6 +15330,16 @@ hardware floating-point support to be enabled.
 .PD
 Use (do not use) the \s-1MIPS\-3D\s0 \s-1ASE\s0.  
 The option \fB\-mips3d\fR implies \fB\-mpaired\-single\fR.
+.IP "\fB\-mmicromips\fR" 4
+.IX Item "-mmicromips"
+.PD 0
+.IP "\fB\-mno\-micromips\fR" 4
+.IX Item "-mno-micromips"
+.PD
+Generate (do not generate) microMIPS code.
+.Sp
+MicroMIPS code generation can also be controlled on a per-function basis
+by means of \f(CW\*(C`micromips\*(C'\fR and \f(CW\*(C`nomicromips\*(C'\fR attributes.
 .IP "\fB\-mmt\fR" 4
 .IX Item "-mmt"
 .PD 0
@@ -15496,6 +15567,16 @@ This option has no effect on abicalls code.  The default is
 .PD
 Enable (disable) use of the \f(CW\*(C`mad\*(C'\fR, \f(CW\*(C`madu\*(C'\fR and \f(CW\*(C`mul\*(C'\fR
 instructions, as provided by the R4650 \s-1ISA\s0.
+.IP "\fB\-mimadd\fR" 4
+.IX Item "-mimadd"
+.PD 0
+.IP "\fB\-mno\-imadd\fR" 4
+.IX Item "-mno-imadd"
+.PD
+Enable (disable) use of the \f(CW\*(C`madd\*(C'\fR and \f(CW\*(C`msub\*(C'\fR integer
+instructions.  The default is \fB\-mimadd\fR on architectures
+that support \f(CW\*(C`madd\*(C'\fR and \f(CW\*(C`msub\*(C'\fR except for the 74k 
+architecture where it was found to generate slower code.
 .IP "\fB\-mfused\-madd\fR" 4
 .IX Item "-mfused-madd"
 .PD 0
@@ -15506,10 +15587,12 @@ Enable (disable) use of the floating-point multiply-accumulate
 instructions, when they are available.  The default is
 \&\fB\-mfused\-madd\fR.
 .Sp
-When multiply-accumulate instructions are used, the intermediate
-product is calculated to infinite precision and is not subject to
-the \s-1FCSR\s0 Flush to Zero bit.  This may be undesirable in some
-circumstances.
+On the R8000 \s-1CPU\s0 when multiply-accumulate instructions are used,
+the intermediate product is calculated to infinite precision
+and is not subject to the \s-1FCSR\s0 Flush to Zero bit.  This may be
+undesirable in some circumstances.  On other processors the result
+is numerically identical to the equivalent computation using
+separate multiply, add, subtract and negate instructions.
 .IP "\fB\-nocpp\fR" 4
 .IX Item "-nocpp"
 Tell the \s-1MIPS\s0 assembler to not run its preprocessor over user
@@ -17730,8 +17813,8 @@ This is the default when the target is \f(CW\*(C`sh\-*\-linux*\*(C'\fR.
 Set the cost to assume for a multiply insn.
 .IP "\fB\-mdiv=\fR\fIstrategy\fR" 4
 .IX Item "-mdiv=strategy"
-Set the division strategy to use for SHmedia code.  \fIstrategy\fR must be
-one of:
+Set the division strategy to be used for integer division operations.
+For SHmedia \fIstrategy\fR can be one of:
 .RS 4
 .IP "\fBfp\fR" 4
 .IX Item "fp"
@@ -17794,6 +17877,34 @@ slows down the case of larger dividends.  \fBinv20u\fR assumes the case of a suc
 a small dividend to be unlikely, and \fBinv20l\fR assumes it to be likely.
 .RE
 .RS 4
+.Sp
+For targets other than SHmedia \fIstrategy\fR can be one of:
+.IP "\fBcall\-div1\fR" 4
+.IX Item "call-div1"
+Calls a library function that uses the single-step division instruction
+\&\f(CW\*(C`div1\*(C'\fR to perform the operation.  Division by zero calculates an
+unspecified result and does not trap.  This is the default except for \s-1SH4\s0,
+\&\s-1SH2A\s0 and SHcompact.
+.IP "\fBcall-fp\fR" 4
+.IX Item "call-fp"
+Calls a library function that performs the operation in double precision
+floating point.  Division by zero causes a floating-point exception.  This is
+the default for SHcompact with \s-1FPU\s0.  Specifying this for targets that do not
+have a double precision \s-1FPU\s0 will default to \f(CW\*(C`call\-div1\*(C'\fR.
+.IP "\fBcall-table\fR" 4
+.IX Item "call-table"
+Calls a library function that uses a lookup table for small divisors and
+the \f(CW\*(C`div1\*(C'\fR instruction with case distinction for larger divisors.  Division
+by zero calculates an unspecified result and does not trap.  This is the default
+for \s-1SH4\s0.  Specifying this for targets that do not have dynamic shift
+instructions will default to \f(CW\*(C`call\-div1\*(C'\fR.
+.RE
+.RS 4
+.Sp
+When a division strategy has not been specified the default strategy will be
+selected based on the current target.  For \s-1SH2A\s0 the default strategy is to
+use the \f(CW\*(C`divs\*(C'\fR and \f(CW\*(C`divu\*(C'\fR instructions instead of library function
+calls.
 .RE
 .IP "\fB\-maccumulate\-outgoing\-args\fR" 4
 .IX Item "-maccumulate-outgoing-args"
@@ -18228,10 +18339,6 @@ processor (which corresponds to erratum #13 of the \s-1AT697E\s0 processor).
 .PP
 These \fB\-m\fR options are supported in addition to the above
 on \s-1SPARC\-V9\s0 processors in 64\-bit environments:
-.IP "\fB\-mlittle\-endian\fR" 4
-.IX Item "-mlittle-endian"
-Generate code for a processor running in little-endian mode.  It is only
-available for a few configurations and most notably not on Solaris and Linux.
 .IP "\fB\-m32\fR" 4
 .IX Item "-m32"
 .PD 0
@@ -18558,23 +18665,18 @@ the first 32 kilobytes of memory.
 .IP "\fB\-mv850\fR" 4
 .IX Item "-mv850"
 Specify that the target processor is the V850.
-.IP "\fB\-mbig\-switch\fR" 4
-.IX Item "-mbig-switch"
-Generate code suitable for big switch tables.  Use this option only if
-the assembler/linker complain about out of range branches within a switch
-table.
-.IP "\fB\-mapp\-regs\fR" 4
-.IX Item "-mapp-regs"
-This option causes r2 and r5 to be used in the code generated by
-the compiler.  This setting is the default.
-.IP "\fB\-mno\-app\-regs\fR" 4
-.IX Item "-mno-app-regs"
-This option causes r2 and r5 to be treated as fixed registers.
+.IP "\fB\-mv850e3v5\fR" 4
+.IX Item "-mv850e3v5"
+Specify that the target processor is the V850E3V5.  The preprocessor
+constant \fB_\|_v850e3v5_\|_\fR is defined if this option is used.
+.IP "\fB\-mv850e2v4\fR" 4
+.IX Item "-mv850e2v4"
+Specify that the target processor is the V850E3V5.  This is an alias for
+the \fB\-mv850e3v5\fR option.
 .IP "\fB\-mv850e2v3\fR" 4
 .IX Item "-mv850e2v3"
 Specify that the target processor is the V850E2V3.  The preprocessor
-constant \fB_\|_v850e2v3_\|_\fR is defined if
-this option is used.
+constant \fB_\|_v850e2v3_\|_\fR is defined if this option is used.
 .IP "\fB\-mv850e2\fR" 4
 .IX Item "-mv850e2"
 Specify that the target processor is the V850E2.  The preprocessor
@@ -18594,7 +18696,7 @@ Specify that the target processor is the V850E.  The preprocessor
 constant \fB_\|_v850e_\|_\fR is defined if this option is used.
 .Sp
 If neither \fB\-mv850\fR nor \fB\-mv850e\fR nor \fB\-mv850e1\fR
-nor \fB\-mv850e2\fR nor \fB\-mv850e2v3\fR
+nor \fB\-mv850e2\fR nor \fB\-mv850e2v3\fR nor \fB\-mv850e3v5\fR
 are defined then a default target processor is chosen and the
 relevant \fB_\|_v850*_\|_\fR preprocessor constant is defined.
 .Sp
@@ -18602,9 +18704,126 @@ The preprocessor constants \fB_\|_v850\fR and \fB_\|_v851_\|_\fR are always
 defined, regardless of which processor variant is the target.
 .IP "\fB\-mdisable\-callt\fR" 4
 .IX Item "-mdisable-callt"
+.PD 0
+.IP "\fB\-mno\-disable\-callt\fR" 4
+.IX Item "-mno-disable-callt"
+.PD
 This option suppresses generation of the \f(CW\*(C`CALLT\*(C'\fR instruction for the
-v850e, v850e1, v850e2 and v850e2v3 flavors of the v850 architecture.  The default is
-\&\fB\-mno\-disable\-callt\fR which allows the \f(CW\*(C`CALLT\*(C'\fR instruction to be used.
+v850e, v850e1, v850e2, v850e2v3 and v850e3v5 flavors of the v850
+architecture.
+.Sp
+This option is enabled by default when the \s-1RH850\s0 \s-1ABI\s0 is
+in use (see \fB\-mrh850\-abi\fR), and disabled by default when the
+\&\s-1GCC\s0 \s-1ABI\s0 is in use.  If \f(CW\*(C`CALLT\*(C'\fR instructions are being generated
+then the C preprocessor symbol \f(CW\*(C`_\|_V850_CALLT_\|_\*(C'\fR will be defined.
+.IP "\fB\-mrelax\fR" 4
+.IX Item "-mrelax"
+.PD 0
+.IP "\fB\-mno\-relax\fR" 4
+.IX Item "-mno-relax"
+.PD
+Pass on (or do not pass on) the \fB\-mrelax\fR command line option
+to the assembler.
+.IP "\fB\-mlong\-jumps\fR" 4
+.IX Item "-mlong-jumps"
+.PD 0
+.IP "\fB\-mno\-long\-jumps\fR" 4
+.IX Item "-mno-long-jumps"
+.PD
+Disable (or re-enable) the generation of PC-relative jump instructions.
+.IP "\fB\-msoft\-float\fR" 4
+.IX Item "-msoft-float"
+.PD 0
+.IP "\fB\-mhard\-float\fR" 4
+.IX Item "-mhard-float"
+.PD
+Disable (or re-enable) the generation of hardware floating point
+instructions.  This option is only significant when the target
+architecture is \fBV850E2V3\fR or higher.  If hardware floating point
+instructions are being generated then the C preprocessor symbol
+\&\f(CW\*(C`_\|_FPU_OK_\|_\*(C'\fR will be defined, otherwise the symbol
+\&\f(CW\*(C`_\|_NO_FPU_\|_\*(C'\fR will be defined.
+.IP "\fB\-mloop\fR" 4
+.IX Item "-mloop"
+Enables the use of the e3v5 \s-1LOOP\s0 instruction.  The use of this
+instruction is not enabled by default when the e3v5 architecture is
+selected because its use is still experimental.
+.IP "\fB\-mrh850\-abi\fR" 4
+.IX Item "-mrh850-abi"
+.PD 0
+.IP "\fB\-mghs\fR" 4
+.IX Item "-mghs"
+.PD
+Enables support for the \s-1RH850\s0 version of the V850 \s-1ABI\s0.  This is the
+default.  With this version of the \s-1ABI\s0 the following rules apply:
+.RS 4
+.IP "\(bu" 4
+Integer sized structures and unions are returned via a memory pointer
+rather than a register.
+.IP "\(bu" 4
+Large structures and unions (more than 8 bytes in size) are passed by
+value.
+.IP "\(bu" 4
+Functions are aligned to 16\-bit boundaries.
+.IP "\(bu" 4
+The \fB\-m8byte\-align\fR command line option is supported.
+.IP "\(bu" 4
+The \fB\-mdisable\-callt\fR command line option is enabled by
+default.  The \fB\-mno\-disable\-callt\fR command line option is not
+supported.
+.RE
+.RS 4
+.Sp
+When this version of the \s-1ABI\s0 is enabled the C preprocessor symbol
+\&\f(CW\*(C`_\|_V850_RH850_ABI_\|_\*(C'\fR is defined.
+.RE
+.IP "\fB\-mgcc\-abi\fR" 4
+.IX Item "-mgcc-abi"
+Enables support for the old \s-1GCC\s0 version of the V850 \s-1ABI\s0.  With this
+version of the \s-1ABI\s0 the following rules apply:
+.RS 4
+.IP "\(bu" 4
+Integer sized structures and unions are returned in register \f(CW\*(C`r10\*(C'\fR.
+.IP "\(bu" 4
+Large structures and unions (more than 8 bytes in size) are passed by
+reference.
+.IP "\(bu" 4
+Functions are aligned to 32\-bit boundaries, unless optimizing for
+size.
+.IP "\(bu" 4
+The \fB\-m8byte\-align\fR command line option is not supported.
+.IP "\(bu" 4
+The \fB\-mdisable\-callt\fR command line option is supported but not
+enabled by default.
+.RE
+.RS 4
+.Sp
+When this version of the \s-1ABI\s0 is enabled the C preprocessor symbol
+\&\f(CW\*(C`_\|_V850_GCC_ABI_\|_\*(C'\fR is defined.
+.RE
+.IP "\fB\-m8byte\-align\fR" 4
+.IX Item "-m8byte-align"
+.PD 0
+.IP "\fB\-mno\-8byte\-align\fR" 4
+.IX Item "-mno-8byte-align"
+.PD
+Enables support for \f(CW\*(C`doubles\*(C'\fR and \f(CW\*(C`long long\*(C'\fR types to be
+aligned on 8\-byte boundaries.  The default is to restrict the
+alignment of all objects to at most 4\-bytes.  When
+\&\fB\-m8byte\-align\fR is in effect the C preprocessor symbol
+\&\f(CW\*(C`_\|_V850_8BYTE_ALIGN_\|_\*(C'\fR will be defined.
+.IP "\fB\-mbig\-switch\fR" 4
+.IX Item "-mbig-switch"
+Generate code suitable for big switch tables.  Use this option only if
+the assembler/linker complain about out of range branches within a switch
+table.
+.IP "\fB\-mapp\-regs\fR" 4
+.IX Item "-mapp-regs"
+This option causes r2 and r5 to be used in the code generated by
+the compiler.  This setting is the default.
+.IP "\fB\-mno\-app\-regs\fR" 4
+.IX Item "-mno-app-regs"
+This option causes r2 and r5 to be treated as fixed registers.
 .PP
 \fI\s-1VAX\s0 Options\fR
 .IX Subsection "VAX Options"
