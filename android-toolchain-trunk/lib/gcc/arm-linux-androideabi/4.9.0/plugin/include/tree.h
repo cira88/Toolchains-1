@@ -5310,6 +5310,11 @@ extern int integer_onep (const_tree);
 
 extern int integer_all_onesp (const_tree);
 
+/* integer_minus_onep (tree x) is nonzero if X is an integer constant of
+   value -1.  */
+
+extern int integer_minus_onep (const_tree);
+
 /* integer_pow2p (tree x) is nonzero is X is an integer constant with
    exactly one bit 1.  */
 
@@ -5339,10 +5344,15 @@ extern tree staticp (tree);
 
 extern tree save_expr (tree);
 
-/* Look inside EXPR and into any simple arithmetic operations.  Return
-   the innermost non-arithmetic node.  */
+/* Look inside EXPR into any simple arithmetic operations.  Return the
+   outermost non-arithmetic or non-invariant node.  */
 
 extern tree skip_simple_arithmetic (tree);
+
+/* Look inside EXPR into simple arithmetic operations involving constants.
+   Return the outermost non-arithmetic or non-constant node.  */
+
+extern tree skip_simple_constant_arithmetic (tree);
 
 /* Return which tree structure is used by T.  */
 

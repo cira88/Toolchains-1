@@ -282,12 +282,6 @@ struct int_tree_map {
   tree to;
 };
 
-extern unsigned int int_tree_map_hash (const void *);
-extern int int_tree_map_eq (const void *, const void *);
-
-extern unsigned int uid_decl_map_hash (const void *);
-extern int uid_decl_map_eq (const void *, const void *);
-
 #define num_ssa_names (vec_safe_length (cfun->gimple_df->ssa_names))
 #define ssa_name(i) ((*cfun->gimple_df->ssa_names)[(i)])
 
@@ -749,6 +743,7 @@ extern void tree_check_data_deps (void);
 /* In tree-ssa-loop-ivopts.c  */
 bool expr_invariant_in_loop_p (struct loop *, tree);
 bool stmt_invariant_in_loop_p (struct loop *, gimple);
+struct loop *outermost_invariant_loop_for_expr (struct loop *, tree);
 bool multiplier_allowed_in_address_p (HOST_WIDE_INT, enum machine_mode,
 				      addr_space_t);
 bool may_be_nonaddressable_p (tree expr);
